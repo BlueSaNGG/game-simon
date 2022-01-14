@@ -62,13 +62,13 @@ function showGame() {
   $("#level-title").text("Press A Key to Start");
   $(".game-container").slideDown();
   $(".menu-container").slideUp();
-  $("#back-btn").show("slow");
+  $("#back-btn").show();
 }
 //show menue
 function showMenu() {
   $(".game-container").slideUp();
   $(".menu-container").slideDown();
-  $("#back-btn").hide("slow");
+  $("#back-btn").hide();
 }
 
 //start game
