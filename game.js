@@ -30,9 +30,15 @@ $('#back-btn').on("click",()=>{
 //start game
 function gameStart() {
   if (gamestarted == false) {
+    //for desktop
     $(document).on("keydown", (event) => {
       nextSequence();
       $(document).off("keydown");
+    });
+    //for device
+    $(document).on("touchstart", (event) => {
+      nextSequence();
+      $(document).off("touchstart");
     });
     gamestarted = true;
     level = 0;
@@ -51,7 +57,7 @@ function nextSequence() {
   level++;
   updateLevel();
   userChooseColorIndex = 0;
-  console.log("nextSequence called, " + buttonColor + " is chosen.");
+  // console.log("nextSequence called, " + buttonColor + " is chosen.");
 }
 
 //user clicked button
@@ -101,6 +107,7 @@ for (let color of buttonColors) {
 }
 
 function buttonPressedFunction(selectedButtonId) {
+  //for mouse
   $(selectedButtonId).on("mousedown", function () {
     $(this).addClass("pressed");
     $(document).on("mouseup", function () {
@@ -108,6 +115,13 @@ function buttonPressedFunction(selectedButtonId) {
       $(document).off("mouseup");
     });
   });
+  //for device
+  $(selectedButtonId).on("touchstart", function() {
+    $(this).addClass("pressed");
+    $(document).on("touchend", function() {
+      $(selectedButtonId).removeClass("pressed");
+      $(document).off("touchend");
+  })});
 }
 
 function updateLevel() {
@@ -122,7 +136,8 @@ function buttonClickAnimation(buttonColor) {
 
 function flashButton(buttonColor) {
   let selectedButtonId = "#" + buttonColor;
-  $(selectedButtonId).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+  // $(selectedButtonId).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+  $(selectedButtonId).animate({opacity: 0}).animate({opacity:100});
 }
 
 function playAudio(buttonColor) {
