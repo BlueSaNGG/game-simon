@@ -87,12 +87,8 @@ body {
   display: none;
 }
 
-.instruction-link {
+#instruction-button {
   text-decoration: none;
-  color: salmon;
-}
-
-.instruction-link:hover {
   color: salmon;
 }
 
